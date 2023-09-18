@@ -45,10 +45,12 @@
 name: 'Terraform'
 
 on:
-  push:
-    # types: [created]
-    branches: 
-      - 'dev/**'
+  create:
+    ref_type: branch
+  # push:
+  #   # types: [created]
+  #   branches: 
+  #     - 'dev/**'
 
 permissions:
   contents: read
