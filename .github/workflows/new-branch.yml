@@ -57,6 +57,10 @@ jobs:
   terraform:
     name: 'Terraform'
     runs-on: ubuntu-latest
+    permissions: 
+      contents: read
+      pages: write
+      id-token: write
     environment: ${GITHUB_REF##*/}
 
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
