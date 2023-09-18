@@ -1,5 +1,6 @@
-backend "gcs" {
-  project = "anthos-demo-397618"
-  bucket = "terraform-liaurora"
-  prefix = "my-prefix"
+terraform {
+  backend "gcs" {
+    bucket = "terraform-liaurora"
+    prefix = "my-prefix"
+  }
 }
