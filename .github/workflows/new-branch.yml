@@ -46,7 +46,7 @@ name: 'Terraform'
 
 on:
   push:
-    types: [created]
+    # types: [created]
     branches: 
       - 'dev/**'
 
