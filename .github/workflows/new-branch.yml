@@ -54,6 +54,7 @@ on:
 
 permissions:
   contents: read
+  id-token: write
 
 jobs:
   terraform:
@@ -83,6 +84,13 @@ jobs:
       with:
         workload_identity_provider: 'projects/777241620684/locations/global/workloadIdentityPools/my-pool/providers/my-provider'
         service_account: 'github@anthos-demo-397618.iam.gserviceaccount.com'
+        create_credentials_file: 'true'
+
+    - id: 'gcloud'
+      name: 'gcloud'
+      run: |-
+        gcloud auth login --brief --cred-file="${{ steps.auth.outputs.credentials_file_path }}"
+        gcloud services list
 
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
