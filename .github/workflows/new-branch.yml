@@ -82,8 +82,8 @@ jobs:
       name: 'Authenticate to Google Cloud'
       uses: 'google-github-actions/auth@v0.4.0'
       with:
-        workload_identity_provider: 'projects/777241620684/locations/global/workloadIdentityPools/my-pool/providers/my-provider'
-        service_account: 'github@anthos-demo-397618.iam.gserviceaccount.com'
+        workload_identity_provider: 'projects/777241620684/locations/global/workloadIdentityPools/github-pool/providers/gh-provider'
+        service_account: 'github-sa@anthos-demo-397618.iam.gserviceaccount.com'
         create_credentials_file: 'true'
 
     - id: 'gcloud'
