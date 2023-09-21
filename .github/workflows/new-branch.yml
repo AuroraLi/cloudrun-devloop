@@ -93,18 +93,18 @@ jobs:
         echo $GITHUB_REF_NAME
         echo $GITHUB_REF
         echo $GITHUB_REF_TYPE
-
-    # Create a new Terraform workspace
-    - name: Terraform Init
-      # if: github.event.push.created
-      working-directory: terraform
-      run: terraform workspace new $GITHUB_REF_NAME
       
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
       # if: github.event.push.created
       working-directory: terraform
       run: terraform init
+      
+    # Create a new Terraform workspace
+    - name: Terraform workspace
+      # if: github.event.push.created
+      working-directory: terraform
+      run: terraform workspace new $GITHUB_REF_NAME
 
     # Checks that all Terraform configuration files adhere to a canonical format
     - name: Terraform Format
