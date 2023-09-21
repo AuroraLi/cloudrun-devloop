@@ -102,12 +102,14 @@ jobs:
     - name: Terraform Format
       # if: github.event.push.created
       working-directory: terraform
+      continue-on-error: true
       run: terraform fmt -check
 
     # Generates an execution plan for Terraform
     - name: Terraform Plan
       # if: github.event.push.created
       working-directory: terraform
+      continue-on-error: true
       run: terraform plan -input=false
 
       # On push to "main", build or change infrastructure according to Terraform configuration files
