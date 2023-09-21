@@ -86,12 +86,20 @@ jobs:
         service_account: 'github-sa@anthos-demo-397618.iam.gserviceaccount.com'
         create_credentials_file: 'true'
 
-    - id: 'gcloud'
-      name: 'gcloud'
-      run: |-
-        gcloud auth login --brief --cred-file="${{ steps.auth.outputs.credentials_file_path }}" --quiet
-        gcloud services list --quiet
+    - id: 'variables'
+      name: 'Get Actions Variables'
+      run: |
+        echo $GITHUB_ACTION
+        echo $GITHUB_REF_NAME
+        echo $GITHUB_REF
+        echo $GITHUB_REF_TYPE
 
+    # Create a new Terraform workspace
+    - name: Terraform Init
+      # if: github.event.push.created
+      working-directory: terraform
+      run: terraform workspace new $GITHUB_REF_NAME
+      
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
       # if: github.event.push.created
