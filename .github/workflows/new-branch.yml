@@ -130,3 +130,12 @@ jobs:
       # if: github.event.push.created
       working-directory: terraform
       run: terraform apply -auto-approve -input=false
+
+    - name: Skaffold Config
+      run: sed -i "s/my-queue/${GITHUB_REF_NAME}/g" app/cloudrun/dev/cloud-run-service.yaml.template > app/cloudrun/dev/cloud-run-service.yaml
+
+    - name: Commit & Push changes
+      uses: actions-js/push@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: ${GITHUB_REF_NAME}

@@ -1,0 +1,42 @@
+apiVersion: skaffold/v4beta6
+kind: Config
+metadata:
+  name: app
+build:
+  artifacts:
+    - image: us-central1-docker.pkg.dev/anthos-demo-397618/devloop/app
+      buildpacks:
+        builder: gcr.io/buildpacks/builder:v1
+  googleCloudBuild: 
+    projectId: anthos-demo-397618
+    region: us-central1
+manifests:
+  rawYaml:
+    - cloudrun/dev/cloud-run-service.yaml
+profiles:
+  - name: dev
+    activation:
+      - command: dev
+    manifests:
+      rawYaml:
+        - cloudrun/dev/cloud-run-service.yaml
+    deploy:
+      cloudrun:
+        projectid: anthos-demo-397618
+        region: us-central1
+  - name: staging
+    manifests:
+      rawYaml:
+        - cloudrun/staging/cloud-run-service.yaml
+    deploy:
+      cloudrun:
+        projectid: YOUR-GCP-PROJECT
+        region: GCP-REGION
+  - name: production
+    manifests:
+      rawYaml:
+        - cloudrun/dev/cloud-run-service.yaml
+    deploy:
+      cloudrun:
+        projectid: YOUR-GCP-PROJECT
+        region: GCP-REGION
