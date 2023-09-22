@@ -134,6 +134,9 @@ jobs:
     - name: Skaffold Config
       run: sed "s/my-queue/${GITHUB_REF_NAME}/g" app/cloudrun/dev/cloud-run-service.yaml.template > app/cloudrun/dev/cloud-run-service.yaml
 
+    - name: Skaffold Config for new Cloud Run service
+      run: sed "s/cloud-run-service-name/${GITHUB_REF_NAME}/g" app/cloudrun/dev/cloud-run-service.yaml.template > app/cloudrun/dev/cloud-run-service.yaml
+
     - name: Commit & Push changes
       run: |
         git add app/cloudrun/dev/cloud-run-service.yaml

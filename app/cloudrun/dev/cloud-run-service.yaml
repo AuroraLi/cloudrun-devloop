@@ -1,0 +1,20 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: cloud-run-service-name # this service will be created in Cloud Run via Skaffold
+spec:
+  template:
+    spec:
+      containers:
+      - image: us-central1-docker.pkg.dev/anthos-demo-397618/devloop/app
+        env:
+          - name: QUEUE_NAME
+            value: "one-more"
+          - name: QUEUE_LOCATION
+            value: "us-central1"
+          - name: FUNCTION_URL
+            value: "https://us-central1-anthos-demo-397618.cloudfunctions.net/sendEmail"
+          - name: SERVICE_ACCOUNT_EMAIL
+            value: "function@anthos-demo-397618.iam.gserviceaccount.com"
+          - name: GOOGLE_CLOUD_PROJECT
+            value: anthos-demo-397618
