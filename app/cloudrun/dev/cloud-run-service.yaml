@@ -1,7 +1,7 @@
 apiVersion: serving.knative.dev/v1
 kind: Service
 metadata:
-  name: cloud-run-service-name # this service will be created in Cloud Run via Skaffold
+  name: asdf-sept22 # this service will be created in Cloud Run via Skaffold
 spec:
   template:
     spec:
@@ -9,7 +9,7 @@ spec:
       - image: us-central1-docker.pkg.dev/anthos-demo-397618/devloop/app
         env:
           - name: QUEUE_NAME
-            value: "one-more"
+            value: "asdf-sept22"
           - name: QUEUE_LOCATION
             value: "us-central1"
           - name: FUNCTION_URL
