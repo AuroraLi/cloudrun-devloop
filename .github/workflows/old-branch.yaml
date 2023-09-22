@@ -130,3 +130,9 @@ jobs:
       # if: github.event.push.created
       working-directory: terraform
       run: terraform destroy -auto-approve -input=false
+
+    # Delete a new Terraform workspace
+    - name: Terraform workspace
+      # if: github.event.push.created
+      working-directory: terraform
+      run: terraform workspace delete ${{ github.event.ref }}

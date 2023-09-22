@@ -135,7 +135,9 @@ jobs:
       run: sed -i "s/my-queue/${GITHUB_REF_NAME}/g" app/cloudrun/dev/cloud-run-service.yaml.template > app/cloudrun/dev/cloud-run-service.yaml
 
     - name: Commit & Push changes
-      uses: actions-js/push@master
-      with:
-        github_token: ${{ secrets.TOKEN }}
-        branch: ${GITHUB_REF_NAME}
+      run: |
+        git add app/cloudrun/dev/cloud-run-service.yaml
+        git config --global user.name 'Your Name'
+        git config --global user.email 'actuins@users.noreply.github.com'
+        git commit -m "Automated report"
+        git push
