@@ -132,7 +132,7 @@ jobs:
       run: terraform apply -auto-approve -input=false
 
     - name: Skaffold Config
-      run: sed -i "s/my-queue/${GITHUB_REF_NAME}/g" app/cloudrun/dev/cloud-run-service.yaml.template > app/cloudrun/dev/cloud-run-service.yaml
+      run: sed "s/my-queue/${GITHUB_REF_NAME}/g" app/cloudrun/dev/cloud-run-service.yaml.template > app/cloudrun/dev/cloud-run-service.yaml
 
     - name: Commit & Push changes
       run: |
