@@ -135,4 +135,6 @@ jobs:
     - name: Terraform workspace
       # if: github.event.push.created
       working-directory: terraform
-      run: terraform workspace delete ${{ github.event.ref }}
+      run: |
+        terraform workspace select default
+        terraform workspace delete ${{ github.event.ref }}
