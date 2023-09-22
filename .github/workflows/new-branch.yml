@@ -137,5 +137,5 @@ jobs:
     - name: Commit & Push changes
       uses: actions-js/push@master
       with:
-        github_token: ${{ secrets.OKEN }}
+        github_token: ${{ secrets.TOKEN }}
         branch: ${GITHUB_REF_NAME}
